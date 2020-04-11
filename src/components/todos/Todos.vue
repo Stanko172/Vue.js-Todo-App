@@ -1,7 +1,7 @@
 <template>
     <div>
         <TodoMaker />
-            <div v-for="todo in todos" :key="todo.id" class="todo-item">
+            <div v-for="todo in sortedTodos" :key="todo.id" class="todo-item">
                 <div>
                     <input type="checkbox" @change="changeComplete(todo)"/>
                     <span :class="{'completed-todo': todo.completed}">
@@ -31,6 +31,22 @@ export default {
             //const currentTodo = this.todos[currentTodoIndex] 
             //currentTodo.completed = !currentTodo.completed
             todo.completed = !todo.completed
+        },
+        compare(a, b){
+            if(a.completed === true && b.completed === false){
+                return 1;
+            }
+            if(a.completed === false && b.completed === true){
+                return -1;
+            }
+            return 0
+        }
+    },
+    computed: {
+        sortedTodos(){
+            const newTodos = [...this.todos]
+            newTodos.sort(this.compare)
+            return newTodos
         }
     }
     
