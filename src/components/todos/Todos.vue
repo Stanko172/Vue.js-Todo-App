@@ -8,7 +8,7 @@
                         {{todo.title}}
                     </span>
                 </div>
-                <button type="submit" class="delete-button">X</button>
+                <button type="submit" class="delete-button" @click.prevent="$emit('delete-todo', todo.id)">X</button>
             </div>
     </div>
 </template>

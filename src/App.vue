@@ -3,6 +3,7 @@
     <Header />
     <Todos 
       :todos="todos"
+      @delete-todo="deleteTodo"
     />
   </div>
 </template>
@@ -39,6 +40,12 @@ export default {
     ]
     }
     
+  },
+  methods: {
+    deleteTodo(id){
+      this.todos = this.todos.filter(todo => todo.id !== id)
+      console.log(this.todos)
+    }
   }
 }
 </script>
