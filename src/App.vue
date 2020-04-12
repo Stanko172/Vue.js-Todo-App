@@ -4,6 +4,7 @@
     <Todos 
       :todos="todos"
       @delete-todo="deleteTodo"
+      @new-todo="addTodo"
     />
   </div>
 </template>
@@ -45,6 +46,9 @@ export default {
     deleteTodo(id){
       this.todos = this.todos.filter(todo => todo.id !== id)
       console.log(this.todos)
+    },
+    addTodo(newTodo){
+      this.todos.push(newTodo)
     }
   }
 }

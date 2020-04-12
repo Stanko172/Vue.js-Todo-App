@@ -1,6 +1,8 @@
 <template>
     <div>
-        <TodoMaker />
+        <TodoMaker 
+            @new-todo="emitFunc"
+        />
             <div v-for="todo in sortedTodos" :key="todo.id" class="todo-item">
                 <div>
                     <input type="checkbox" @change="changeComplete(todo)"/>
@@ -40,6 +42,9 @@ export default {
                 return -1;
             }
             return 0
+        },
+        emitFunc(newTodo){
+            this.$emit('new-todo', newTodo)
         }
     },
     computed: {
